@@ -18,7 +18,7 @@ services:
     depends_on:
       - api_loterias
     ports:
-      - "3758:3758"
+      - "8537:8537"
     networks:
       - red-gane-int
 
