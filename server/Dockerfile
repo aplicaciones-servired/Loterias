@@ -1,28 +1,16 @@
-FROM node:20
+# Base de Node.js versión 18
+FROM node:slim
 
-# Crear directorio de trabajo
+# Cambiar a la carpeta de la aplicación
 WORKDIR /app
 
-# Copiar package.json y package-lock.json / yarn.lock
-COPY package*.json ./
-# o si usas yarn
-# COPY package.json yarn.lock ./
-
 # Instalar dependencias
-RUN npm install
-# o
-# RUN yarn install
-
-# Copiar código fuente
 COPY . .
 
-# Compilar TypeScript
-RUN npm run build
-# o
-# RUN yarn run build
+RUN yarn
 
-# Exponer puerto
+# Exponer el puerto
 EXPOSE 3000
 
-# Iniciar aplicación
-CMD ["node", "--env-file=.env", "dist/index.js"]
+# Comando para ejecutar la aplicación
+CMD ["yarn", "start"]
