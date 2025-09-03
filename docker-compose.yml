@@ -9,7 +9,7 @@ services:
     networks:
       - red-gane-int
 
-  web-loterias:
+  web_loterias:
     image: nginx:stable-alpine3.19-slim
     container_name: web_loterias
     volumes:
