@@ -34,6 +34,7 @@ pipeline {
       steps {
         script {
           sh 'cd ./client && npm install --legacy-peer-deps'
+          sh 'chmod +x ./client/node_modules/.bin/tsc'
           sh 'cd ./client && npm run build'
         }
       }
