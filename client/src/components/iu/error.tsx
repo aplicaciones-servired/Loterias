@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { WarningIcon } from './warning'
 
 export function Error ({ errorString }: { errorString: string }): JSX.Element {

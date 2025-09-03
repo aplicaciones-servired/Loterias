@@ -1,5 +1,5 @@
-import React from 'react'
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+import React, { type JSX } from 'react'
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export function Button ({ children, ...props }: Props): JSX.Element {
   return (
