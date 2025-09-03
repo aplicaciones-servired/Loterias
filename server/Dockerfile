@@ -1,20 +1,16 @@
 # Base de Node.js versión 18
-FROM node:18-slim
+FROM node:slim
 
-# Carpeta de la aplicación
+# Cambiar a la carpeta de la aplicación
 WORKDIR /app
 
-# Copiar package.json y package-lock.json primero (mejor cache)
-COPY package*.json ./
-
 # Instalar dependencias
-RUN npm install --omit=dev
-
-# Copiar el resto del código
 COPY . .
 
-# Exponer puerto
+RUN yarn
+
+# Exponer el puerto
 EXPOSE 3000
 
-# Comando de inicio
-CMD ["npm", "start"]
+# Comando para ejecutar la aplicación
+CMD ["yarn", "start"]
