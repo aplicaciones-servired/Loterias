@@ -1,5 +1,5 @@
-import React from 'react'
-interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> { }
+import React, { type JSX } from 'react'
+type Props = React.LabelHTMLAttributes<HTMLLabelElement>
 
 export function Label ({ children, ...props }: Props): JSX.Element {
   return (

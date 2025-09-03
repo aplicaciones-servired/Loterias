@@ -1,5 +1,5 @@
-import React from 'react'
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> { }
+import React, { type JSX } from 'react'
+type Props = React.InputHTMLAttributes<HTMLInputElement>
 
 export function Input ({ ...props }: Props): JSX.Element {
   return (
