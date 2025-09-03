@@ -1,12 +1,12 @@
-import React, { createContext, type Dispatch, type SetStateAction, useContext, useEffect, useState } from 'react'
-import { type User } from '../types/user'
+import React, { createContext, type Dispatch, type JSX, type SetStateAction, useContext, useEffect, useState } from 'react'
+import type { User } from '../types/user'
 
 interface IAuthContext {
   isAuthenticated: boolean
   login: () => void
   logout: () => void
-  username: User
-  setUsernames: Dispatch<SetStateAction<User>>
+  username: User | null
+  setUsernames: Dispatch<SetStateAction<User | null>>
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>
 }
 
@@ -18,12 +18,21 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
 export const AuthProvider = ({ children }: Props): JSX.Element => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const storedAuth = localStorage.getItem('isAuthenticated')
-    return (storedAuth != null) ? JSON.parse(storedAuth) : false
+    try {
+      const storedAuth = localStorage.getItem('isAuthenticated')
+      return storedAuth ? JSON.parse(storedAuth) : false
+    } catch {
+      return false
+    }
   })
-  const [username, setUsernames] = useState<User>(() => {
-    const storedUser = localStorage.getItem('username')
-    return (storedUser != null) ? JSON.parse(storedUser) : null
+
+  const [username, setUsernames] = useState<User | null>(() => {
+    try {
+      const storedUser = localStorage.getItem('username')
+      return storedUser ? JSON.parse(storedUser) : null
+    } catch {
+      return null
+    }
   })
 
   let inactivityTimer: ReturnType<typeof setTimeout>
@@ -80,6 +89,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = (): IAuthContext => {
   const context = useContext(AuthContext)
   if (context === undefined) {
