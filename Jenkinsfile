@@ -6,16 +6,16 @@ pipeline {
   }
 
   environment {
-    ENV_CLIENT_LOTERIAS = credentials('ENV_CLIENT_LOTERIAS')
-    ENV_SERVER_LOTERIAS = credentials('ENV_SERVER_LOTERIAS')
+    ENV_CLIENT_ARQUEOS = credentials('ENV_CLIENT_ARQUEOS')
+    ENV_SERVER_ARQUEOS = credentials('ENV_SERVER_ARQUEOS')
   }
     
   stages {
     stage('Copy .env files') {
       steps {
         script {
-          def env_server = readFile(ENV_SERVER_LOTERIAS)
-          def env_client = readFile(ENV_CLIENT_LOTERIAS)
+          def env_server = readFile(ENV_SERVER_ARQUEOS)
+          def env_client = readFile(ENV_CLIENT_ARQUEOS)
           writeFile file: './server/.env', text: env_server
           writeFile file: './client/.env', text: env_client
         }
@@ -34,12 +34,10 @@ pipeline {
       steps {
         script {
           sh 'cd ./client && npm install --legacy-peer-deps'
-          sh 'chmod +x ./client/node_modules/.bin/tsc'
-          sh 'cd ./client && npm run build'
+          sh 'cd ./client && node --run build'
         }
       }
     }
-
 
     stage('down docker compose') {
       steps {
@@ -52,7 +50,7 @@ pipeline {
     stage('delete images server') {
       steps {
         script {
-          def images = 'loterias-server'
+          def images = 'arqueo-server'
           if (sh(script: "docker images -q ${images}", returnStdout: true).trim()) {
             sh "docker rmi ${images}"
           } else {
