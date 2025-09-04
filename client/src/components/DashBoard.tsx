@@ -1,4 +1,4 @@
-import type { User } from "../types/Interfaces"
+import type { User } from '../types/Interfaces';
 import Card from '@mui/material/Card';
 import { Suspense } from "react";
 import { useAuth } from "../auth/AuthContext";
