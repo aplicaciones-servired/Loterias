@@ -1,22 +1,22 @@
 version: "3.7"
 services:
-  api_loterias:
+  api_loteria:
     build:
       context: ./server
       dockerfile: Dockerfile
-    container_name: loterias-server-1
-    image: loterias-server
+    container_name: loteria-server-1
+    image: loteria-server
     networks:
       - red-gane-int
 
-  web_loterias:
+  web-loteria:
     image: nginx:stable-alpine3.19-slim
-    container_name: web_loterias
+    container_name: web_loteria
     volumes:
       - ./client/dist:/usr/share/nginx/html
       - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api_loterias
+      - api_loteria
     ports:
       - "8537:8537"
     networks:
