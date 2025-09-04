@@ -2,7 +2,6 @@ import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'
 import { WarningIcon } from '../components/ui/warning'
 import { useLogin } from '../services/useLogin'
-import type { JSX } from 'react'
 
 function LoginPage (): JSX.Element {
   const { username, setUsername, password, errorString, setPassword, handleSubmit } = useLogin()

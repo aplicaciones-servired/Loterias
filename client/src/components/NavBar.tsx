@@ -1,7 +1,6 @@
 import { useAuth } from '../auth/AuthContext'
 import { NavLink } from 'react-router-dom'
 import { Button } from './ui/Button'
-import type { JSX } from 'react'
 
 const Links = [
   { link: '/home', name: 'Home' },
@@ -19,7 +18,7 @@ function NavBar (): JSX.Element {
   const { logout } = useAuth()
 
   return (
-    <nav className='bg-blue-300 py-3 dark:bg-slate-900 dark:text-white rounded-lg'>
+    <nav className='bg-blue-300 py-3  rounded-lg'>
       <ul className='flex items-center justify-around'>
 
         <figure className='flex'>

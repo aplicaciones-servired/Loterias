@@ -1,4 +1,3 @@
-import type { JSX } from 'react'
 import { useAuth } from '../auth/AuthContext'
 
 export function CambiarCompany (): JSX.Element {

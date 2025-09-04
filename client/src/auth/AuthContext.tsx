@@ -1,12 +1,12 @@
-import React, { createContext, type Dispatch, type JSX, type SetStateAction, useContext, useEffect, useState } from 'react'
+import { createContext, type Dispatch, type SetStateAction, useContext, useEffect, useState } from 'react'
 import { type User } from '../types/Interfaces'
 
 interface IAuthContext {
   isAuthenticated: boolean
   login: () => void
   logout: () => void
-  username: User
-  setUsernames: Dispatch<SetStateAction<User>>
+  username: User | null
+  setUsernames: Dispatch<SetStateAction<User | null>>
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>
 }
 
@@ -17,14 +17,25 @@ interface Props {
 const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
 export const AuthProvider = ({ children }: Props): JSX.Element => {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     const storedAuth = localStorage.getItem('isAuthenticated')
-    return (storedAuth != null) ? JSON.parse(storedAuth) : false
+    try {
+      return storedAuth ? JSON.parse(storedAuth) : false
+    } catch {
+      return false
+    }
   })
-  const [username, setUsernames] = useState<User>(() => {
+
+  const [username, setUsernames] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('username')
-    return (storedUser != null) ? JSON.parse(storedUser) : null
+    try {
+      return storedUser ? JSON.parse(storedUser) : null
+    } catch {
+      return null
+    }
   })
+
+
 
   let inactivityTimer: ReturnType<typeof setTimeout>
 
@@ -52,12 +63,17 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   }, [])
 
   useEffect(() => {
+  if (isAuthenticated !== undefined) {
     localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated))
-  }, [isAuthenticated])
+  }
+}, [isAuthenticated])
 
-  useEffect(() => {
+useEffect(() => {
+  if (username !== undefined) {
     localStorage.setItem('username', JSON.stringify(username))
-  }, [username])
+  }
+}, [username])
+
 
   useEffect(() => {
     if ((Boolean(isAuthenticated)) && location.pathname === '/') {

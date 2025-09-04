@@ -1,4 +1,4 @@
-import { lazy, Suspense, type JSX } from 'react'
+import { lazy, Suspense} from 'react'
 
 import { useAuth } from '../auth/AuthContext'
 import { Outlet } from 'react-router-dom'
@@ -6,16 +6,17 @@ import NavBar from '../components/NavBar'
 
 const LoginPage = lazy(async () => await import('../pages/LoginPage'))
 
-function Root (): JSX.Element {
-  const { username, isAuthenticated } = useAuth()
+function Root(): JSX.Element {
+  const { isAuthenticated } = useAuth()
 
-  if ((username?.username?.length === 0) || !isAuthenticated) {
+  if (!isAuthenticated) {
     return (
       <Suspense fallback={<div>Loading...</div>}>
         <LoginPage />
       </Suspense>
     )
   }
+
 
   return (
     <section >

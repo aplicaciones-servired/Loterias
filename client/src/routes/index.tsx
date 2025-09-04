@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Root from './Root'
 
-const ArqueoForm = lazy(async () => await import('../pages/ReporteChat_bot'))
+const HomePage = lazy(async () => await import('../pages/HomePage'))
 
 
 export const BrowserRouters = createBrowserRouter([
@@ -12,7 +12,7 @@ export const BrowserRouters = createBrowserRouter([
     children: [
       {
         path: '/home',
-        element: <Suspense fallback={<div>Loading...</div>}><ArqueoForm /></Suspense>
+        element: <Suspense fallback={<div>Loading...</div>}><HomePage /></Suspense>
       }
     ]
   }

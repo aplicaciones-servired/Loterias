@@ -1,7 +1,6 @@
-import type { JSX } from 'react'
 import { useAuth } from '../auth/AuthContext'
 import { CambiarCompany } from '../components/DefineCompany'
-import DashBoard from './DashBoard'
+import DashBoard from '../components/DashBoard'
 
 function EmpresaPage (): JSX.Element {
   const { username } = useAuth()
