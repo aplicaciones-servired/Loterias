@@ -1,6 +1,7 @@
+
 import { useAuth } from '../auth/AuthContext'
 
-export function CambiarCompany (): JSX.Element {
+export function CambiarCompany (): JSX {
   const { username, setUsernames } = useAuth()
 
   const handleEmpresaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

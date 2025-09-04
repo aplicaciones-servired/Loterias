@@ -7,6 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
+import type { JSX } from "react/jsx-runtime";
 
 const DahsBoard = ({ zona }: { zona: User | null }): JSX.Element => {
   const companyname = zona?.company ?? "Sin empresa";

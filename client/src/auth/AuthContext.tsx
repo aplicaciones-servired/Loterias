@@ -1,5 +1,6 @@
 import { createContext, type Dispatch, type SetStateAction, useContext, useEffect, useState } from 'react'
 import { type User } from '../types/Interfaces'
+import type { JSX } from "react/jsx-runtime";
 
 interface IAuthContext {
   isAuthenticated: boolean
