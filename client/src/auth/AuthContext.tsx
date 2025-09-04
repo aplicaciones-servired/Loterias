@@ -6,9 +6,20 @@ interface IAuthContext {
   isAuthenticated: boolean
   login: () => void
   logout: () => void
-  username: User | null
-  setUsernames: Dispatch<SetStateAction<User | null>>
+  username: User
+  setUsernames: Dispatch<SetStateAction<User>>
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>
+}
+
+const defaultUser: User = {
+  id: '',
+  names: '',
+  lastnames: '',
+  username: '',
+  email: '',
+  process: '',
+  sub_process: '',
+  company: ''
 }
 
 interface Props {
@@ -27,14 +38,15 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
     }
   })
 
-  const [username, setUsernames] = useState<User | null>(() => {
+  const [username, setUsernames] = useState<User>(() => {
     const storedUser = localStorage.getItem('username')
     try {
-      return storedUser ? JSON.parse(storedUser) : null
+      return storedUser ? JSON.parse(storedUser) : defaultUser
     } catch {
-      return null
+      return defaultUser
     }
   })
+
 
 
 
@@ -64,16 +76,16 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   }, [])
 
   useEffect(() => {
-  if (isAuthenticated !== undefined) {
-    localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated))
-  }
-}, [isAuthenticated])
+    if (isAuthenticated !== undefined) {
+      localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated))
+    }
+  }, [isAuthenticated])
 
-useEffect(() => {
-  if (username !== undefined) {
-    localStorage.setItem('username', JSON.stringify(username))
-  }
-}, [username])
+  useEffect(() => {
+    if (username !== undefined) {
+      localStorage.setItem('username', JSON.stringify(username))
+    }
+  }, [username])
 
 
   useEffect(() => {

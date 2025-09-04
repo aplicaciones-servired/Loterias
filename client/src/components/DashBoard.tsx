@@ -9,7 +9,7 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import type { JSX } from "react/jsx-runtime";
 
-const DahsBoard = ({ zona }: { zona: User | null }): JSX.Element => {
+const DahsBoard = ({ zona }: { zona: User}): JSX.Element => {
   const companyname = zona?.company ?? "Sin empresa";
   const { isAuthenticated } = useAuth()
 
