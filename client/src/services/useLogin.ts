@@ -2,7 +2,7 @@ import { useAuth } from '../auth/AuthContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { type User } from '../types/Interfaces'
-// import { LOGIN_URL } from '../utils/contanst'
+import { LOGIN_URL } from '../utils/contanst'
 import axios from 'axios'
 // import { API_URL } from '../utils/constans'
 
@@ -23,8 +23,8 @@ export function useLogin (): {
 
   const handleSubmit = (ev: React.FormEvent): void => {
     ev.preventDefault()
-    axios.post('http://localhost:9010/api/v2/login', { username, password })
-    //axios.post(`${LOGIN_URL}/login`, { username, password }) // Reemplaza 'APP_NAME' con el nombre de tu aplicaciÃ³n
+    //axios.post('http://localhost:9010/api/v2/login', { username, password })
+    axios.post(`${LOGIN_URL}/login`, { username, password }) // Reemplaza 'APP_NAME' con el nombre de tu aplicaciÃ³n
       .then((res) => {
         console.log('Respuesta del login:', res.data.user)
         if (res.status === 200) {
