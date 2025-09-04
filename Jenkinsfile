@@ -52,7 +52,7 @@ pipeline {
     stage('delete images server') {
       steps {
         script {
-          def images = 'loteria-server'
+          def images = 'loteria-server:v1'
           if (sh(script: "docker images -q ${images}", returnStdout: true).trim()) {
             sh "docker rmi ${images}"
           } else {
