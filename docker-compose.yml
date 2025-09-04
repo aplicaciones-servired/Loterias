@@ -21,7 +21,9 @@ services:
     container_name: loteria-server_v1.0
     image: loteria-server:v1
     networks:
-      - red-gane-int
+      red-gane-int:
+        aliases:
+          - loteriaserver_v1.0
     environment:
       - TZ=America/Bogota
 
