@@ -1,20 +1,18 @@
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { RouterProvider } from 'react-router-dom'
-import { AuthProvider } from './auth/AuthProvider.tsx'
+import { RouterProvider } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouters } from './routes/index.tsx'
+import './index.css';
+import axios from 'axios';
+import { AuthProvider } from './auth/AuthContext';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const root = document.getElementById('root')
+// Configuración importante para manejo de credenciales
+axios.defaults.withCredentials = true;
 
-if (root !== null) {
-  ReactDOM.createRoot(root).render(
-    <AuthProvider>
-      <>
-        <RouterProvider router={BrowserRouters} />
-        <ToastContainer position="top-right" autoClose={3000} />
-      </>
-    </AuthProvider>
-  )
-}
+createRoot(document.getElementById('root')!).render(
+  <AuthProvider>
+    <RouterProvider router={BrowserRouters} />
+    <ToastContainer position="top-right" autoClose={3000} />
+  </AuthProvider>
+)

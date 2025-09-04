@@ -1,6 +1,6 @@
-import { useAuth } from '../auth/AuthProvider'
+import { useAuth } from '../auth/AuthContext'
 import { NavLink } from 'react-router-dom'
-import { Button } from './iu'
+import { Button } from './ui/Button'
 import type { JSX } from 'react'
 
 const Links = [

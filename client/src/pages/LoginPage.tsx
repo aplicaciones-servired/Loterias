@@ -1,7 +1,7 @@
-import { Input } from '../components/iu/Input'
-import { Button } from '../components/iu/'
-import { WarningIcon } from '../components/iu/warning'
-import { useLogin } from '../hooks/useLogin'
+import { Input } from '../components/ui/Input'
+import { Button } from '../components/ui/Button'
+import { WarningIcon } from '../components/ui/warning'
+import { useLogin } from '../services/useLogin'
 import type { JSX } from 'react'
 
 function LoginPage (): JSX.Element {

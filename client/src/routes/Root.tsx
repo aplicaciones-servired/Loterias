@@ -1,7 +1,7 @@
 import { lazy, Suspense, type JSX } from 'react'
-import { useAuth } from '../auth/AuthProvider'
-import { Outlet } from 'react-router-dom'
 
+import { useAuth } from '../auth/AuthContext'
+import { Outlet } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 
 const LoginPage = lazy(async () => await import('../pages/LoginPage'))
