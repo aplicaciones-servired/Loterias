@@ -1,6 +1,7 @@
 import { useAuth } from '../auth/AuthContext'
 import { NavLink } from 'react-router-dom'
 import { Button } from './ui/Button'
+import type { JSX } from "react/jsx-runtime";
 
 const Links = [
   { link: '/home', name: 'Home' },

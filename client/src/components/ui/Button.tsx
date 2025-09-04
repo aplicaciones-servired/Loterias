@@ -1,4 +1,5 @@
 import React from 'react'
+import type { JSX } from "react/jsx-runtime";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export function Button ({ children, ...props }: Props): JSX.Element {
