@@ -47,9 +47,6 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
     }
   })
 
-
-
-
   let inactivityTimer: ReturnType<typeof setTimeout>
 
   const resetInactivityTimer = (): void => {
@@ -100,6 +97,9 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
 
   const logout = (): void => {
     setIsAuthenticated(false)
+    setUsernames(defaultUser) // limpia el state también
+    localStorage.removeItem("username")
+    localStorage.removeItem("isAuthenticated")
   }
 
   return (

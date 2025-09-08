@@ -1,9 +1,10 @@
 import { useAuth } from "../auth/AuthContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { User } from '../types/Interfaces';
-import { LOGIN_URL } from '../utils/contanst'
+import type { User } from "../types/Interfaces";
+import { LOGIN_URL } from "../utils/contanst";
 import axios from "axios";
+import { toast } from "react-toastify";
 // import { API_URL } from '../utils/constans'
 
 export function useLogin(): {
@@ -15,23 +16,32 @@ export function useLogin(): {
   handleSubmit: (ev: React.FormEvent) => void;
 } {
   const { login, setUsernames } = useAuth();
-  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorString, setErrorString] = useState("");
+  const navigate = useNavigate();
+
 
   const handleSubmit = (ev: React.FormEvent): void => {
     ev.preventDefault();
-      //axios.post("http://localhost:9010/api/v2/login", { username, password })
-      axios.post(`${LOGIN_URL}/login`, { username, password }) // Reemplaza 'APP_NAME' con el nombre de tu aplicaciÃ³n
+    //axios.post("http://localhost:9010/api/v2/login", { username, password })
+    axios.post(`${LOGIN_URL}/login`, { username, password }) // Reemplaza 'APP_NAME' con el nombre de tu aplicaciÃ³n
       .then((res) => {
-        console.log("Respuesta del login:", res.data.user);
-        if (res.status === 200) {
-          // ✅ Solo deja esto
+        const proceso = res.data.user.process
+        if (proceso === "Operaciones") {
           login();
           setUsernames(res.data.user as unknown as User);
-          navigate("/home");
+          navigate('/home')
+        }
+        if (proceso !== "Operaciones") {
+          toast.error("No estas autorizado", {
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
         } else {
           setErrorString("Datos de usuario inválidos.");
         }

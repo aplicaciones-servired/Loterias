@@ -1,19 +1,17 @@
 import { useAuth } from '../auth/AuthContext'
+import FormLoteria from '../components/FormLoteria';
 import { CambiarCompany } from '../components/DefineCompany'
-import DashBoard from '../components/DashBoard'
 import type { JSX } from "react/jsx-runtime";
 
 function EmpresaPage (): JSX.Element {
   const { username } = useAuth()
-  const empresa = username?.company ?? ''
-
-  console.log('Empresa seleccionada:', empresa)
+  const empresa = username?.company
 
   return (
     <>
       {(empresa === 'Servired' || empresa === 'Multired')
         ? (
-          <DashBoard zona={username} />
+          <FormLoteria zona={username} />
           )
         : (
           <CambiarCompany />

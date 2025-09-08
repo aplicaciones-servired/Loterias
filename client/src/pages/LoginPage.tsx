@@ -1,10 +1,10 @@
 import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'
-import { WarningIcon } from '../components/ui/warning'
 import { useLogin } from '../services/useLogin'
 import type { JSX } from "react/jsx-runtime";
+import { toast } from 'react-toastify';
 
-function LoginPage (): JSX.Element {
+function LoginPage(): JSX.Element {
   const { username, setUsername, password, errorString, setPassword, handleSubmit } = useLogin()
 
   return (
@@ -30,14 +30,13 @@ function LoginPage (): JSX.Element {
       </form >
 
       {(errorString !== '') &&
-        <div className='flex gap-2'>
-          <p className="text-center bg-red-600 text-white font-semibold p-2 rounded-md">
-            <WarningIcon />
-          </p>
-          <p className="text-center bg-red-600 text-white font-semibold p-2 rounded-md">
-            {errorString}
-          </p>
-        </div>
+        toast.error(String(errorString), {
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        })
       }
 
     </section >

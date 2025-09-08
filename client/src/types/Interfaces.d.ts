@@ -1,5 +1,3 @@
-export type Empresa = 'Multired' | 'Servired' | 'MultiredYServired'
-
 export interface User {
   id: string
   names: string
