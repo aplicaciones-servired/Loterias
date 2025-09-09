@@ -5,7 +5,7 @@ import * as XLSX from "xlsx";
 import type { Loteria } from "../types/Interfaces";
 import { API_URL } from "../utils/contanst";
 
-export const exportarAExcel = async (fechaInicio?: string, fechaFin?: string, companyname?: string): Promise<void> => {
+export const exportarAExcel = async (fechaInicio?: string, companyname?: string): Promise<void> => {
   let data: Loteria[] = [];
 
   try {
@@ -13,7 +13,6 @@ export const exportarAExcel = async (fechaInicio?: string, fechaFin?: string, co
       //axios.post(`http://localhost:3000/getLoteria`, {
       axios.post(`${API_URL}/getLoteria`, {
         fechaInicio,
-        fechaFin,
         companyname
       });
 

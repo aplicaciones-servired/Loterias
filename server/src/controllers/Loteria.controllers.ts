@@ -44,8 +44,8 @@ export const GetLoteria = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { fechaInicio, fechaFin, companyname } = req.body;
-  console.log('first', fechaInicio, fechaFin, companyname)
+  const { fechaInicio, companyname } = req.body;
+  console.log('first', fechaInicio, companyname)
   const empresa = companyname === "Servired" ? "39628" : "39627";
   try {
     const loteria = await getLoteria.findAll({
@@ -62,9 +62,7 @@ export const GetLoteria = async (
         "LOGIN",
       ],
       where: {
-        CREADO_EN: {
-          [Op.between]: [fechaInicio, fechaFin], // Finds products with prices between 10 and 50 (inclusive)
-        },
+        CREADO_EN: fechaInicio, // Finds products with prices between 10 and 50 (inclusive)
         ZONA: {
           [Op.eq]: empresa,
         },

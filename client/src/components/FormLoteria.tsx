@@ -104,12 +104,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
             onChange={(e) => { setFechaInicio(e.target.value) }}
           />
 
-          <Input
-            type="date"
-            value={fechaFin}
-            onChange={(e) => { setFechaFin(e.target.value) }}
-          />
-          <Button onClick={() => exportarAExcel(fechaInicio, fechaFin, companyname)}>
+          <Button onClick={() => exportarAExcel(fechaInicio, companyname)}>
             Exportar a Excel
           </Button>
         </div>
