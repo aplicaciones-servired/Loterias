@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { getLoteria, Loteria } from "../model/loteria.model.js";
 import type { LoteriaBody } from "../interface/LoteriaBody.js";
-import { Op } from "sequelize";
+import { Op, Sequelize } from "sequelize";
 
 export const PostLoteria = async (
   req: Request<{}, {}, LoteriaBody>,
@@ -62,7 +62,10 @@ export const GetLoteria = async (
         "LOGIN",
       ],
       where: {
-        CREADO_EN: fechaInicio, // Finds products with prices between 10 and 50 (inclusive)
+        CREADO_EN: {
+          [Op.between]: [`${fechaInicio}`, `${fechaInicio}`],
+        },
+         // Finds products with prices between 10 and 50 (inclusive)
         ZONA: {
           [Op.eq]: empresa,
         },
