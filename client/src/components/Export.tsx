@@ -17,8 +17,6 @@ export const exportarAExcel = async (fechaInicio?: string, fechaFin?: string, co
         companyname
       });
 
-    console.log('first', response.data)
-
     if (response.data.success) {
       data = response.data.data;
       if (data.length === 0) {
