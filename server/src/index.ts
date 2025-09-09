@@ -9,12 +9,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-const allowlist = process.env.CORS_ORIGINS as string
+const allowlist = (process.env.CORS_ORIGINS || "").split(",");
 
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowlist.includes(origin)) {
-      callback(null, origin); // devuelve solo 1 origin válido
+      callback(null, origin);
     } else {
       callback(new Error("No permitido por CORS"));
     }
