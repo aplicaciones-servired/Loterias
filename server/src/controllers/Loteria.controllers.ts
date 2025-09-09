@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { getLoteria, Loteria } from "../model/loteria.model.js";
 import type { LoteriaBody } from "../interface/LoteriaBody.js";
-import { Op, Sequelize } from "sequelize";
+import { fn, col, where, Op } from "sequelize"
 
 export const PostLoteria = async (
   req: Request<{}, {}, LoteriaBody>,
@@ -45,7 +45,7 @@ export const GetLoteria = async (
   res: Response
 ): Promise<void> => {
   const { fechaInicio, companyname } = req.body;
-  console.log('first', fechaInicio, companyname)
+  console.log("first", fechaInicio, companyname);
   const empresa = companyname === "Servired" ? "39628" : "39627";
   try {
     const loteria = await getLoteria.findAll({
@@ -62,15 +62,11 @@ export const GetLoteria = async (
         "LOGIN",
       ],
       where: {
-        CREADO_EN: {
-          [Op.between]: [`${fechaInicio}`, `${fechaInicio}`],
-        },
-         // Finds products with prices between 10 and 50 (inclusive)
-        ZONA: {
-          [Op.eq]: empresa,
-        },
+        [Op.and]: [
+          where(fn("DATE", col("CREADO_EN")), "=", fechaInicio),
+          { ZONA: empresa },
+        ],
       },
-      order: [["CREADO_EN", "DESC"]],
     });
     res.status(200).json({
       success: true,
