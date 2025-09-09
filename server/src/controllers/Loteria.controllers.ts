@@ -50,8 +50,6 @@ export const GetLoteria = async (
   try {
     const loteria = await getLoteria.findAll({
       attributes: [
-        "ZONA",
-        "CODBARRAS",
         "CODIGOLOTERIA",
         "NUMERO_SORTEO",
         "NUMERO",
