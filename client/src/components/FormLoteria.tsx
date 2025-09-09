@@ -16,7 +16,6 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
   const companyname = zona?.company ?? "Sin empresa";
   const { username } = useAuth();
   const [fechaInicio, setFechaInicio] = useState('')
-  const [fechaFin, setFechaFin] = useState('')
 
   const {
     register,
