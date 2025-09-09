@@ -6,7 +6,7 @@ import formSchema from "../schemas/scheForm";
 import { useAuth } from "../auth/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "./ui/Input";
 import { exportarAExcel } from "./Export";
 import { Button } from "./ui/Button";
@@ -31,7 +31,6 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
 
   // 👇 función que se ejecuta al enviar el formulario
   const onSubmit = async (data: FieldValues) => {
-    console.log('data', data)
     try {
       const response = await
       //axios.post(`http://localhost:3000/Loteria`, data);
@@ -67,8 +66,17 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
         });
       }
     }
-
   };
+
+  const valorPremio = watch("VALOR");
+
+  useEffect(() => {
+    if (valorPremio) {
+      setValue("TOTAL", valorPremio);
+    } else {
+      setValue("TOTAL", "");
+    }
+  }, [valorPremio, setValue]);
 
   // 👀 Escuchar cambios en CODBARRAS
   const codBarras = watch("CODBARRAS");

@@ -29,12 +29,12 @@ export function useLogin(): {
     axios.post(`${LOGIN_URL}/login`, { username, password }) // Reemplaza 'APP_NAME' con el nombre de tu aplicaciÃ³n
       .then((res) => {
         const proceso = res.data.user.process
-        if (proceso === "Operaciones") {
+        if (proceso === "Operaciones" || proceso === "Financiero") {
           login();
           setUsernames(res.data.user as unknown as User);
           navigate('/home')
         }
-        if (proceso !== "Operaciones") {
+        if (proceso !== "Operaciones" && proceso !== "Financiero") {
           toast.error("No estas autorizado", {
             autoClose: 2000,
             hideProgressBar: false,
