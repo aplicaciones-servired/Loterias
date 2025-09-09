@@ -74,6 +74,7 @@ class getLoteria extends Model<
   declare TOTAL: number;
   declare APROXIMACIONES?: string | undefined;
   declare LOGIN: string;
+  declare CREADO_EN: string;
 }
 getLoteria.init(
   {
@@ -94,6 +95,7 @@ getLoteria.init(
     TOTAL: { type: DataTypes.DECIMAL(12, 2) },
     APROXIMACIONES: { type: DataTypes.STRING },
     LOGIN: { type: DataTypes.STRING(15) },
+    CREADO_EN: { type: DataTypes.DATE },
   },
   {
     sequelize: powerBi,
