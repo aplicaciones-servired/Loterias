@@ -123,6 +123,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
                 id="CODBARRAS"
                 {...register('CODBARRAS')}
                 placeholder="CODIGO DE LA LOTERIA"
+                autoComplete="off"
                 className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700 placeholder-slate-4s00"
               />
               {errors.CODBARRAS && (
@@ -247,6 +248,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
                 id="FECHA_SORTEO"
                 {...register('FECHA_SORTEO')}
                 placeholder="FECHA DEL SORTEO"
+                autoComplete="off"
                 className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700 placeholder-slate-400"
               />
               {errors.FECHA_SORTEO && (
@@ -265,6 +267,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
                 id="VALOR"
                 {...register('VALOR')}
                 placeholder="VALOR DEL PREMIO"
+                autoComplete="off"
                 className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700 placeholder-slate-400"
               />
               {errors.VALOR && (
@@ -283,6 +286,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
                 id="TOTAL"
                 {...register('TOTAL')}
                 placeholder="TOTAL DEL PREMIO"
+                autoComplete="off"
                 className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700 placeholder-slate-400"
               />
               {errors.TOTAL && (
@@ -301,6 +305,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
                 {...register('APROXIMACIONES')}
                 rows={6}
                 placeholder="APROXIMACIONES"
+                autoComplete="off"
                 className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700 placeholder-slate-400 resize-none"
               />
 
