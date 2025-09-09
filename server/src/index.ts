@@ -13,14 +13,27 @@ const allowlist = (process.env.CORS_ORIGINS || "").split(",");
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowlist.includes(origin)) {
-      callback(null, origin);
-    } else {
-      callback(new Error("No permitido por CORS"));
+    if (!origin) {
+      // Permite peticiones sin "Origin" (ej: Postman, curl)
+      return callback(null, true);
     }
+
+    // Verifica coincidencia exacta
+    if (allowlist.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // Permite cualquier subdominio de serviredgane.cloud
+    if (origin.endsWith(".serviredgane.cloud")) {
+      return callback(null, true);
+    }
+
+    // Bloquea si no coincide
+    return callback(new Error("No permitido por CORS"));
   },
   credentials: true,
 }));
+
 
 app.use(express.json());
 app.use(log('dev'));
