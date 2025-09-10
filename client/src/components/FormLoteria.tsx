@@ -8,9 +8,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Input } from "./ui/Input";
-import { exportarAExcel } from "./Export";
+
 import { Button } from "./ui/Button";
 import { API_URL } from "../utils/contanst";
+import { ExportarAExcel } from "./Export";
 
 const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
   const companyname = zona?.company ?? "Sin empresa";
@@ -32,8 +33,8 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
   const onSubmit = async (data: FieldValues) => {
     try {
       const response = await
-      //axios.post(`http://localhost:3000/Loteria`, data);
-      axios.post(`${API_URL}/Loteria`, data)
+        //axios.post(`http://localhost:3000/Loteria`, data);
+        axios.post(`${API_URL}/Loteria`, data)
 
       if (response.data.success) {
         toast.success(response.data.message, {
@@ -102,10 +103,8 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
             value={fechaInicio}
             onChange={(e) => { setFechaInicio(e.target.value) }}
           />
+          <ExportarAExcel fechaInicio={fechaInicio} companyname={companyname} />
 
-          <Button onClick={() => exportarAExcel(fechaInicio, companyname)}>
-            Exportar a Excel
-          </Button>
         </div>
       </section>
       <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-200 p-4">
