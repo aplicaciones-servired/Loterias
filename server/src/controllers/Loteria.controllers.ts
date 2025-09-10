@@ -81,3 +81,39 @@ export const GetLoteria = async (
     });
   }
 };
+
+
+export const GetActualizarLoteria = async (
+  req: Request<{}, {}, LoteriaBody>,
+  res: Response
+): Promise<void> => {
+  const data = req.body;
+  console.log('first', data)
+  try {
+    const actualizarloteria = await getLoteria.findAll({
+      attributes: [
+        "VALOR",
+        "TOTAL",
+      ],
+      where: {
+        CODIGOLOTERIA: data.CODIGOLOTERIA,
+        NUMERO_SORTEO: data.NUMERO_SORTEO,
+        SERIE: data.SERIE,
+        NUMERO: data.NUMERO,
+        FRACCION: data.FRACCION,
+        LOGIN: data.LOGIN
+      },
+    });
+    res.status(200).json({
+      success: true,
+      message: "loteria consultada corrrectamente",
+      data: actualizarloteria,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error extraer los datos",
+      error: error instanceof Error ? error.message : error,
+    });
+  }
+};

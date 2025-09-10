@@ -33,6 +33,7 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
           }
         } else {
           toast.error(response.data.message, { autoClose: 5000 })
+          return
         }
       } catch (err) {
         if (axios.isAxiosError(err) && err.response) {
@@ -52,7 +53,20 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
   const longitudes = [25, 25, 20, 10, 10, 10, 35]
 
   const handleDownload = (): void => {
-    const tabla = [
+
+    interface TablaExcel {
+      A: string
+      B: string
+      C: string
+      D: string
+      E: string
+      F: string
+      G: number | string
+      H: number | string
+      I: string
+      J: string
+    }
+    const tabla: TablaExcel[] = [
       {
         A: 'Numero identificador',
         B: 'Numero sorteo',
@@ -76,8 +90,8 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
         D: item.SERIE,
         E: item.FRACCION,
         F: item.FECHA_SORTEO,
-        G: parseInt(item.VALOR, 10).toString(),
-        H: parseInt(item.TOTAL, 10).toString(),
+        G: Number(item.VALOR),   // 👈 aquí ya va como number
+        H: Number(item.TOTAL),
         I: item.APROXIMACIONES,
         J: item.LOGIN,
       })

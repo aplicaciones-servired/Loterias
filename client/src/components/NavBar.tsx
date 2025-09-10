@@ -5,7 +5,7 @@ import type { JSX } from "react/jsx-runtime";
 
 const Links = [
   { link: '/home', name: 'Home' },
-  { link: '/actualizar', name: 'Actualizar' },
+  //{ link: '/actualizar', name: 'Actualizar' },
 ]
 
 const LinkComponent = ({ link, name }: { link: string, name: string }): JSX.Element => {
