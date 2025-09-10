@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Input } from "./ui/Input";
 
-import { Button } from "./ui/Button";
 import { API_URL } from "../utils/contanst";
 import { ExportarAExcel } from "./Export";
 
@@ -197,7 +196,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
             {/* NUMERO PREMIADO */}
             <div className="flex flex-col gap-2 md:col-span-1">
               <label htmlFor="NUMERO" className="text-slate-700 font-medium">
-                NUMERO DEL PREMIADO
+                NUMERO PREMIADO
               </label>
               <input
                 type="text"
