@@ -46,9 +46,6 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
     void fetchData() // ✅ aquí se llama una sola vez
   }, [fechaInicio, companyname])
 
-
-  console.log('first', datos)
-
   const titulo = [{ A: 'Reporte Loteria' }, {}]
   const hora = new Date()
   const infoCreacción = { A: `Fecha De Creación ${hora.toLocaleString()}` }

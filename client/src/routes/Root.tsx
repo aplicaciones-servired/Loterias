@@ -7,6 +7,7 @@ import type { JSX } from "react/jsx-runtime";
 
 const LoginPage = lazy(async () => await import('../pages/LoginPage'))
 
+
 function Root(): JSX.Element {
   const { isAuthenticated } = useAuth()
 
