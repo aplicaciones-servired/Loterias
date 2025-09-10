@@ -60,40 +60,37 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
       C: string
       D: string
       E: string
-      F: string
+      F: number | string
       G: number | string
-      H: number | string
+      H: string
       I: string
-      J: string
     }
     const tabla: TablaExcel[] = [
       {
-        A: 'Numero identificador',
-        B: 'Numero sorteo',
-        C: 'Numero Jugado',
-        D: 'Serie',
-        E: 'Fraccion',
-        F: 'Fecha Sorteo',
-        G: 'Valor',
-        H: 'Total',
-        I: 'Aproximacion',
-        J: 'Usuerio',
+        A: 'Fecha',
+        B: 'Numero de sorteo',
+        C: 'Serie',
+        D: 'Numero',
+        E: 'Num Fraccion',
+        F: 'Valor',
+        G: 'Total',
+        H: 'Aproximacion',
+        I: 'Numero identificador de la loteria',
       }
     ]
 
 
     datos.forEach((item) => {
       tabla.push({
-        A: item.CODIGOLOTERIA,
+        A: item.FECHA_SORTEO,
         B: item.NUMERO_SORTEO,
-        C: item.NUMERO,
-        D: item.SERIE,
+        C: item.SERIE,
+        D: item.NUMERO,
         E: item.FRACCION,
-        F: item.FECHA_SORTEO,
-        G: Number(item.VALOR),   // 👈 aquí ya va como number
-        H: Number(item.TOTAL),
-        I: item.APROXIMACIONES,
-        J: item.LOGIN,
+        F: Number(item.VALOR),
+        G: Number(item.TOTAL),   // 👈 aquí ya va como number
+        H: item.APROXIMACIONES,
+        I: item.CODIGOLOTERIA,
       })
     })
 
