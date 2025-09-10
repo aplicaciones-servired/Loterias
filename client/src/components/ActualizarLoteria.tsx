@@ -17,7 +17,7 @@ export default function ActualizarLoteria(): JSX.Element {
         formState: { errors },
         watch,
         setValue,
-        reset,
+        //reset,
     } = useForm({
         resolver: zodResolver(formSchema),
     });
