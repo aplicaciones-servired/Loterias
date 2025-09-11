@@ -163,6 +163,7 @@ export default function ActualizarLoteria() {
                             {...register('CODBARRAS')}
                             placeholder="CODIGO DE LA LOTERIA"
                             className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700"
+                            autoComplete="off"
                         />
                         {errors.CODBARRAS && (
                             <span className="text-red-500 text-sm">{errors.CODBARRAS.message}</span>
