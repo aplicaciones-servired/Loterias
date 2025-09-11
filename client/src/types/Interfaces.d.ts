@@ -10,6 +10,7 @@ export interface User {
 }
 
 export interface Loteria {
+  ID_PREMIO: string;
   ZONA: string;
   CODBARRAS: string;
   CODIGOLOTERIA: string;

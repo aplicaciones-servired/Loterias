@@ -5,13 +5,13 @@ import type { JSX } from "react/jsx-runtime";
 
 const Links = [
   { link: '/home', name: 'Home' },
-  //{ link: '/Actualizar', name: 'Actualizar' },
+  { link: '/Actualizar', name: 'Actualizar' },
 ]
 
 const LinkComponent = ({ link, name }: { link: string, name: string }): JSX.Element => {
   return (
     <li>
-      <NavLink to={`${link}`} className='font-semibold hover:text-rose-600 dark:hover:text-blue-300'>{name}</NavLink>
+      <NavLink to={`${link}`} className='font-semibold hover:text-rose-600'>{name}</NavLink>
     </li>
   )
 }

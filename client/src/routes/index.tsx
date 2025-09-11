@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react'
 import Root from './Root'
 
 const HomePage = lazy(async () => await import('../pages/HomePage'))
-const ActualizarLoteria = lazy(async () => await import('../components/ActualizarLoteria'))
+const Actualizar = lazy(async () => await import('../components/ActualizarLoteria'))
 
 export const BrowserRouters = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ export const BrowserRouters = createBrowserRouter([
       },
       {
         path: '/actualizar',
-        element: <Suspense fallback={<div>Loading...</div>}><ActualizarLoteria /></Suspense>
+        element: <Suspense fallback={<div>Loading...</div>}><Actualizar /></Suspense>
       }
     ]
   }

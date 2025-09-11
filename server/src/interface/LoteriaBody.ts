@@ -1,4 +1,5 @@
 export interface LoteriaBody {
+  ID_PREMIO: string;
   EMPRESA: string;
   CODBARRAS: string;
   CODIGOLOTERIA: string;

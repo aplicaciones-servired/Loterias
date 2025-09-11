@@ -80,13 +80,23 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
   // 👀 Escuchar cambios en CODBARRAS
   const codBarras = watch("CODBARRAS");
 
-  if (codBarras && codBarras.length >= 20) {
-    setValue("CODIGOLOTERIA", codBarras.substring(0, 7));
-    setValue("NUMERO_SORTEO", codBarras.substring(7, 11));
-    setValue("NUMERO", codBarras.substring(11, 15));
-    setValue("SERIE", codBarras.substring(15, 18));
-    setValue("FRACCION", codBarras.substring(18, 20));
-  }
+  useEffect(() => {
+    if (codBarras && codBarras.length >= 20) {
+      setValue("CODIGOLOTERIA", codBarras.substring(0, 7));
+      setValue("NUMERO_SORTEO", codBarras.substring(7, 11));
+      setValue("NUMERO", codBarras.substring(11, 15));
+      setValue("SERIE", codBarras.substring(15, 18));
+      setValue("FRACCION", codBarras.substring(18, 20));
+    } else {
+      setValue("CODIGOLOTERIA", "");
+      setValue("NUMERO_SORTEO", "");
+      setValue("NUMERO", "");
+      setValue("SERIE", "");
+      setValue("FRACCION", "");
+    }
+  }, [codBarras, setValue]);
+
+
 
   const usuario = username.username;
   setValue("EMPRESA", companyname);

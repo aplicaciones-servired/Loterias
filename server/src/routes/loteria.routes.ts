@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { PostLoteria, GetLoteria, GetActualizarLoteria } from "../controllers/Loteria.controllers.js";
+import { PostLoteria, GetLoteria, getActualizar, PotsActualizar } from "../controllers/Loteria.controllers.js";
 
 
 export const LoteriaRoute = Router();
@@ -8,6 +8,7 @@ LoteriaRoute.post("/Loteria", PostLoteria); // Cambiado de /login/:username a /:
 
 LoteriaRoute.post("/getLoteria", GetLoteria); 
 
-LoteriaRoute.post("/getActualizarLoteria", GetActualizarLoteria); 
+LoteriaRoute.post("/getActualizar", getActualizar);
 
+LoteriaRoute.post("/potsActualizar", PotsActualizar);
 
