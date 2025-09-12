@@ -13,7 +13,7 @@ import { API_URL } from "../utils/contanst"
 
 export default function ActualizarLoteria() {
     const { username } = useAuth();
-    const [datos, setDatos] = useState<Loteria[]>([])
+    const [,setDatos] = useState<Loteria[]>([])
     const {
         register,
         handleSubmit,
