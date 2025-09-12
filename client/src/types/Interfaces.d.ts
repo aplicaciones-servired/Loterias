@@ -23,4 +23,5 @@ export interface Loteria {
   TOTAL: string;
   APROXIMACIONES: string;
   LOGIN: string;
+  NOMBRE: string;
 }

@@ -17,13 +17,17 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
+        if (!fechaInicio) {
+          toast.warning("debes selecionar la fecha")
+          return
+        }
+
         const response = await
           //axios.post(`http://localhost:3000/getLoteria`, {
           axios.post(`${API_URL}/getLoteria`, {
             fechaInicio,
             companyname
           })
-
         if (response.data.success) {
           setDatos(response.data.data)
           if (response.data.data.length === 0) {
@@ -75,7 +79,7 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
         F: 'Valor',
         G: 'Total',
         H: 'Aproximacion',
-        I: 'Numero identificador de la loteria',
+        I: 'Nombre de la loteria',
       }
     ]
 
@@ -90,7 +94,7 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
         F: Number(item.VALOR),
         G: Number(item.TOTAL),   // 👈 aquí ya va como number
         H: item.APROXIMACIONES,
-        I: item.CODIGOLOTERIA,
+        I: item.NOMBRE,
       })
     })
 

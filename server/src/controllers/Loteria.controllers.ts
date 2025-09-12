@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import { getLoteria, Loteria } from "../model/loteria.model.js";
 import type { LoteriaBody } from "../interface/LoteriaBody.js";
-import { fn, col, where, Op } from "sequelize";
+import { fn, col, where, Op, Sequelize } from "sequelize";
+import { getEquivalencia } from "../model/eqivalencia.mode.js";
 
 export const PostLoteria = async (
   req: Request<{}, {}, LoteriaBody>,
@@ -40,13 +41,16 @@ export const PostLoteria = async (
   }
 };
 
+
 export const GetLoteria = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   const { fechaInicio, companyname } = req.body;
   console.log("first", fechaInicio, companyname);
+
   const empresa = companyname === "Servired" ? "39628" : "39627";
+
   try {
     const loteria = await getLoteria.findAll({
       attributes: [
@@ -60,6 +64,7 @@ export const GetLoteria = async (
         "TOTAL",
         "APROXIMACIONES",
         "LOGIN",
+        [Sequelize.col("getEquivalencium.NOMBRE"), "NOMBRE"], // 👈 alias directo
       ],
       where: {
         [Op.and]: [
@@ -67,16 +72,24 @@ export const GetLoteria = async (
           { ZONA: empresa },
         ],
       },
+      include: [
+        {
+          model: getEquivalencia,
+          attributes: [], // no incluyo nada extra
+        },
+      ],
+      raw: true, // 👈 hace que venga como objeto plano
     });
+
     res.status(200).json({
       success: true,
-      message: "datos extraido corrrectamente",
+      message: "Datos extraídos correctamente",
       data: loteria,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error extraer los datos",
+      message: "Error al extraer los datos",
       error: error instanceof Error ? error.message : error,
     });
   }
@@ -141,8 +154,6 @@ export const PotsActualizar = async (
 
     res.status(200).json({ success: true, message: "Actualización exitosa" });
   } catch (error) {
-    res
-      .status(404)
-      .json({ success: false, message: "Registro no encontrado" });
+    res.status(404).json({ success: false, message: "Registro no encontrado" });
   }
 };

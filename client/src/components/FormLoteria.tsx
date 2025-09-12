@@ -44,6 +44,14 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
           draggable: true,
         });
         reset();
+        // 👉 Esperar a que se cierre el diálogo y se renderice de nuevo el input
+        setTimeout(() => {
+          const input = document.getElementById("CODBARRAS") as HTMLInputElement | null;
+          if (input) {
+            input.focus();
+            input.select();
+          }
+        }, 100); // 100ms suele ser suficiente
       } else {
         toast.error(response.data.message, {
           autoClose: 5000,

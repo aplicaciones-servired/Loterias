@@ -5,6 +5,7 @@ import {
   type InferCreationAttributes,
   DataTypes,
 } from "sequelize";
+import { getEquivalencia } from "./eqivalencia.mode.js";
 
 class Loteria extends Model<
   InferAttributes<Loteria>,
@@ -104,5 +105,10 @@ getLoteria.init(
     timestamps: false,
   }
 );
+
+getLoteria.belongsTo(getEquivalencia, {
+  foreignKey: "CODIGOLOTERIA", // campo en getLoteria
+  targetKey: "NUMERO", // campo en getEquivalencia
+});
 
 export { Loteria, getLoteria };
