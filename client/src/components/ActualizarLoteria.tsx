@@ -37,7 +37,7 @@ export default function ActualizarLoteria() {
         try {
             const response = await
             //axios.post("http://localhost:3000/getActualizar", data)
-            axios.post(`${API_URL}/Loteria`, data)
+            axios.post(`${API_URL}/getActualizar`, data)
 
             setDatos(response.data.data)
 
@@ -152,18 +152,6 @@ export default function ActualizarLoteria() {
     const companyname = username.company;
     setValue("ZONA", companyname);
     setValue("LOGIN", username.username);
-
-    document.addEventListener('mousemove', (event: MouseEvent) => {
-        const x = event.clientX; // Coordenada horizontal relativa a la ventana
-        const y = event.clientY; // Coordenada vertical relativa a la ventana
-
-        // También puedes usar estas propiedades para coordenadas relativas al documento
-        // const pageX = event.pageX;
-        // const pageY = event.pageY;
-
-        console.log(`Posición del mouse: X=${x}, Y=${y}`);
-    });
-
 
     return (
         <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-200 p-4">

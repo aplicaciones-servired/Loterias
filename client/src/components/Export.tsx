@@ -30,7 +30,6 @@ export function ExportarAExcel({ fechaInicio, fechaFinal, companyname }: Exporta
             fechaFinal,
             companyname
           })
-          console.log('first', response.data.data)
         if (response.data.success) {
           setDatos(response.data.data)
           if (response.data.data.length === 0) {
