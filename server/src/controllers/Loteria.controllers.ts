@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { getLoteria, Loteria } from "../model/loteria.model.js";
 import type { LoteriaBody } from "../interface/LoteriaBody.js";
-import { fn, col, where, Op, Sequelize } from "sequelize";
+import { fn, col, where, Op, Sequelize, and } from "sequelize";
 import { getEquivalencia } from "../model/eqivalencia.mode.js";
 
 export const PostLoteria = async (
@@ -41,12 +41,11 @@ export const PostLoteria = async (
   }
 };
 
-
 export const GetLoteria = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { fechaInicio, companyname } = req.body;
+  const { fechaInicio, fechaFinal, companyname } = req.body;
   console.log("first", fechaInicio, companyname);
 
   const empresa = companyname === "Servired" ? "39628" : "39627";
@@ -68,7 +67,9 @@ export const GetLoteria = async (
       ],
       where: {
         [Op.and]: [
-          where(fn("DATE", col("CREADO_EN")), "=", fechaInicio),
+          where(fn("DATE", col("CREADO_EN")), {
+            [Op.between]: [fechaInicio, fechaFinal],
+          }),
           { ZONA: empresa },
         ],
       },

@@ -16,6 +16,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
   const companyname = zona?.company ?? "Sin empresa";
   const { username } = useAuth();
   const [fechaInicio, setFechaInicio] = useState('')
+  const [fechaFinal, setFechaFinal] = useState('')
 
   const {
     register,
@@ -120,7 +121,12 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
             value={fechaInicio}
             onChange={(e) => { setFechaInicio(e.target.value) }}
           />
-          <ExportarAExcel fechaInicio={fechaInicio} companyname={companyname} />
+           <Input
+            type="date"
+            value={fechaFinal}
+            onChange={(e) => { setFechaFinal(e.target.value) }}
+          />
+          <ExportarAExcel fechaInicio={fechaInicio} fechaFinal={fechaFinal} companyname={companyname} />
 
         </div>
       </section>

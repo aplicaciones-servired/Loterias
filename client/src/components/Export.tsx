@@ -8,10 +8,11 @@ import { API_URL } from '../utils/contanst'
 
 interface ExportarAExcelProps {
   fechaInicio: string
+  fechaFinal: string
   companyname: string
 }
 
-export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps): JSX.Element {
+export function ExportarAExcel({ fechaInicio, fechaFinal, companyname }: ExportarAExcelProps): JSX.Element {
   const [datos, setDatos] = useState<Loteria[]>([])
 
   useEffect(() => {
@@ -26,8 +27,10 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
           //axios.post(`http://localhost:3000/getLoteria`, {
           axios.post(`${API_URL}/getLoteria`, {
             fechaInicio,
+            fechaFinal,
             companyname
           })
+          console.log('first', response.data.data)
         if (response.data.success) {
           setDatos(response.data.data)
           if (response.data.data.length === 0) {
@@ -49,7 +52,7 @@ export function ExportarAExcel({ fechaInicio, companyname }: ExportarAExcelProps
     }
 
     void fetchData() // ✅ aquí se llama una sola vez
-  }, [fechaInicio, companyname])
+  }, [fechaInicio, fechaFinal, companyname])
 
   const titulo = [{ A: 'Reporte Loteria' }, {}]
   const hora = new Date()

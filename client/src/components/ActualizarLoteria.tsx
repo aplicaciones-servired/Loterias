@@ -83,7 +83,7 @@ export default function ActualizarLoteria() {
         try {
             const response = await
             //axios.post("http://localhost:3000/PotsActualizar", data)
-            axios.post(`${API_URL}/Loteria`, data)
+            axios.post(`${API_URL}/PotsActualizar`, data)
             if (response.data.success) {
                 toast.success(response.data.message, {
                     autoClose: 3000,
