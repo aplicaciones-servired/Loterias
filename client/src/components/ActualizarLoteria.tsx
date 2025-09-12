@@ -36,8 +36,8 @@ export default function ActualizarLoteria() {
     const onSubmit: SubmitHandler<Loteria> = async (data) => {
         try {
             const response = await
-                axios.post("http://localhost:3000/getActualizar", data)
-            //axios.post(`${API_URL}/Loteria`, data)
+            //axios.post("http://localhost:3000/getActualizar", data)
+            axios.post(`${API_URL}/Loteria`, data)
 
             setDatos(response.data.data)
 
