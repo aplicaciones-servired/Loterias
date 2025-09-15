@@ -14,7 +14,7 @@ function LoginPage(): JSX.Element {
         <article className='w-full flex flex-col gap-2'>
           <label className="flex justify-center uppercase">Usuario </label>
           <div className='flex justify-center mb-2'>
-            <Input name='username' type='text' placeholder='CP1118342523' autoComplete="off" value={username} required 
+            <Input name='username' type='text' placeholder='CP1118342523'  value={username} required 
               onChange={(ev) => { setUsername(ev.target.value) }} />
           </div>
         </article>

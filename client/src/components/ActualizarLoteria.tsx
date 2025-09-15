@@ -171,6 +171,7 @@ export default function ActualizarLoteria() {
                             id="CODBARRAS"
                             {...register('CODBARRAS')}
                             placeholder="CODIGO DE LA LOTERIA"
+                            maxLength={24}
                             className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700"
                             autoComplete="off"
                         />

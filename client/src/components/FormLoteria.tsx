@@ -38,7 +38,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
 
       if (response.data.success) {
         toast.success(response.data.message, {
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -55,7 +55,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
         }, 100); // 100ms suele ser suficiente
       } else {
         toast.error(response.data.message, {
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -66,11 +66,11 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         toast.error(err.response.data.message, {
-          autoClose: 5000,
+          autoClose: 2000,
         });
       } else {
         toast.error("Error al registrar: " + (err as Error).message, {
-          autoClose: 5000,
+          autoClose: 2000,
         });
       }
     }
@@ -121,7 +121,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
             value={fechaInicio}
             onChange={(e) => { setFechaInicio(e.target.value) }}
           />
-           <Input
+          <Input
             type="date"
             value={fechaFinal}
             onChange={(e) => { setFechaFinal(e.target.value) }}
@@ -148,6 +148,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
                 {...register('CODBARRAS')}
                 placeholder="CODIGO DE LA LOTERIA"
                 autoComplete="off"
+                maxLength={24}
                 className="px-4 py-3 border border-slate-400 rounded-md focus:outline-none focus:border-blue-600 text-slate-700 placeholder-slate-4s00"
               />
               {errors.CODBARRAS && (

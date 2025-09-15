@@ -17,11 +17,11 @@ export function ExportarAExcel({ fechaInicio, fechaFinal, companyname }: Exporta
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
+      if (!fechaInicio && !fechaInicio) {
+        toast.warning("debes selecionar la fecha")
+        return
+      }
       try {
-        if (!fechaInicio) {
-          toast.warning("debes selecionar la fecha")
-          return
-        }
 
         const response = await
           //axios.post(`http://localhost:3000/getLoteria`, {
@@ -131,6 +131,7 @@ export function ExportarAExcel({ fechaInicio, fechaFinal, companyname }: Exporta
   return (
 
     <button
+      id='button'
       type="button"
       onClick={handleDownload}
       className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg "
