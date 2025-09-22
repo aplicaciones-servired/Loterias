@@ -70,7 +70,7 @@ class getLoteria extends Model<
   declare NUMERO: string;
   declare SERIE: string;
   declare FRACCION: number;
-  declare FECHA_SORTEO: string | Date;
+  declare FECHA_SORTEO?: string | Date;
   declare VALOR: number;
   declare TOTAL: number;
   declare APROXIMACIONES?: string | undefined;

@@ -104,7 +104,7 @@ export const getActualizar = async (
   console.log("first", data);
   try {
     const actualizarloteria = await getLoteria.findAll({
-      attributes: ["ID_PREMIO", "VALOR", "TOTAL"],
+      attributes: ["ID_PREMIO", "VALOR", "TOTAL", "FECHA_SORTEO"],
       where: {
         CODIGOLOTERIA: data.CODIGOLOTERIA,
         NUMERO_SORTEO: data.NUMERO_SORTEO,
@@ -135,10 +135,11 @@ export const PotsActualizar = async (
   const data = req.body;
   console.log("first", data);
   try {
-    const actualizarloteria = await getLoteria.update(
+    const Postactualizarloteria = await getLoteria.update(
       {
         VALOR: data.VALOR,
         TOTAL: data.TOTAL,
+        FECHA_SORTEO: data.FECHA_SORTEO,
       },
       {
         where: {

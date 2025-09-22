@@ -46,6 +46,7 @@ export default function ActualizarLoteria() {
                 setValue("ID_PREMIO", loteria.ID_PREMIO)
                 setValue("VALOR", loteria.VALOR)
                 setValue("TOTAL", loteria.TOTAL)
+                setValue("FECHA_SORTEO", loteria.FECHA_SORTEO)
                 toast.success(response.data.message, {
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -292,21 +293,30 @@ export default function ActualizarLoteria() {
                         <div>
                             <input type="hidden" {...register("ID_PREMIO")} />
                             <div className="flex flex-col gap-2 md:col-span-1">
-                                <label htmlFor="VALOR" className="text-slate-700 font-medium">VALOR</label>
+                                <label htmlFor="FECHA_SORTEO" className="text-slate-700 font-medium text-center">FECHA SORTEO</label>
+                                <input
+                                    type="date"
+                                    id="FECHA_SORTEO"
+                                    {...register("FECHA_SORTEO")}
+                                    className="px-4 py-3 border border-slate-400 rounded-md text-center"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2 md:col-span-1">
+                                <label htmlFor="VALOR" className="text-slate-700 font-medium text-center">VALOR</label>
                                 <input
                                     type="text"
                                     id="VALOR"
                                     {...register("VALOR")}
-                                    className="px-4 py-3 border border-slate-400 rounded-md"
+                                    className="px-4 py-3 border border-slate-400 rounded-md text-center"
                                 />
                             </div>
                             <div className="flex flex-col gap-2 md:col-span-1">
-                                <label htmlFor="TOTAL" className="text-slate-700 font-medium">TOTAL</label>
+                                <label htmlFor="TOTAL" className="text-slate-700 font-medium text-center">TOTAL</label>
                                 <input
                                     type="text"
                                     id="TOTAL"
                                     {...register("TOTAL")}
-                                    className="px-4 py-3 border border-slate-400 rounded-md"
+                                    className="px-4 py-3 border border-slate-400 rounded-md text-center"
                                 />
                             </div>
                         </div>
