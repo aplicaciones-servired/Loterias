@@ -33,12 +33,21 @@ pipeline {
     stage('install dependencies client') {
       steps {
         script {
-          sh 'cd ./client && npm install --legacy-peer-deps'
-          sh 'chmod +x ./client/node_modules/.bin/tsc'
-          sh 'cd ./client && node --run build'
+          sh '''
+          cd ./client
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+          npm install --legacy-peer-deps
+          '''
+          sh '''
+          cd ./client
+          chmod +x ./node_modules/.bin/tsc
+          npm run build
+          '''
         }
       }
     }
+
 
 
     stage('down docker compose') {
