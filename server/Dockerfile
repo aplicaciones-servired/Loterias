@@ -10,7 +10,7 @@ COPY . .
 RUN npm install
 
 # Compilar TypeScript en tiempo de construcción
-RUN ./node_modules/.bin/tsc
+RUN npm run build
 
 # Exponer el puerto
 EXPOSE 3000
