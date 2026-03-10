@@ -75,6 +75,7 @@ pipeline {
     stage('run docker compose') {
       steps {
         script {
+          sh 'docker network inspect red-gane-int || docker network create red-gane-int'
           sh 'docker compose up -d'
         }
       }
