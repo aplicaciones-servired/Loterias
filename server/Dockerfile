@@ -9,8 +9,11 @@ COPY . .
 
 RUN npm install
 
+# Compilar TypeScript en tiempo de construcción
+RUN ./node_modules/.bin/tsc
+
 # Exponer el puerto
 EXPOSE 3000
 
-# Comando para ejecutar la aplicación
-CMD ["npm", "start"]
+# Comando para ejecutar la aplicación (ya compilado, no necesita tsc)
+CMD ["node", "--env-file=.env", "./dist/index.js"]
