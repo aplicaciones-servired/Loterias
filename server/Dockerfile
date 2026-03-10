@@ -16,4 +16,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Comando para ejecutar la aplicación (ya compilado, no necesita tsc)
-CMD ["node", "--env-file=.env", "./dist/index.js"]
+CMD ["node", "./dist/index.js"]

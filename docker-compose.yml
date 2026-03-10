@@ -20,6 +20,8 @@ services:
       dockerfile: Dockerfile
     container_name: loteria-server_v1.0
     image: loteria-server:v1
+    env_file:
+      - ./server/.env
     networks:
       red-gane-int:
         aliases:
