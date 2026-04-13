@@ -10,14 +10,15 @@ interface ExportarAExcelProps {
   fechaInicio: string
   fechaFinal: string
   companyname: string
+  usuario: string
 }
 
-export function ExportarAExcel({ fechaInicio, fechaFinal, companyname }: ExportarAExcelProps): JSX.Element {
+export function ExportarAExcel({ fechaInicio, fechaFinal, companyname, usuario }: ExportarAExcelProps): JSX.Element {
   const [datos, setDatos] = useState<Loteria[]>([])
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      if (!fechaInicio && !fechaInicio) {
+      if (!fechaInicio || !fechaFinal) {
         toast.warning("debes selecionar la fecha")
         return
       }
@@ -28,7 +29,9 @@ export function ExportarAExcel({ fechaInicio, fechaFinal, companyname }: Exporta
           axios.post(`${API_URL}/getLoteria`, {
             fechaInicio,
             fechaFinal,
-            companyname
+            companyname,
+            usuario
+
           })
         if (response.data.success) {
           setDatos(response.data.data)
@@ -51,7 +54,7 @@ export function ExportarAExcel({ fechaInicio, fechaFinal, companyname }: Exporta
     }
 
     void fetchData() // ✅ aquí se llama una sola vez
-  }, [fechaInicio, fechaFinal, companyname])
+  }, [fechaInicio, fechaFinal, companyname, usuario])
 
   const titulo = [{ A: 'Reporte Loteria' }, {}]
   const hora = new Date()

@@ -126,7 +126,7 @@ const FormLoteria = ({ zona }: { zona: User }): JSX.Element => {
             value={fechaFinal}
             onChange={(e) => { setFechaFinal(e.target.value) }}
           />
-          <ExportarAExcel fechaInicio={fechaInicio} fechaFinal={fechaFinal} companyname={companyname} />
+          <ExportarAExcel fechaInicio={fechaInicio} fechaFinal={fechaFinal} companyname={companyname} usuario={username.username} />
 
         </div>
       </section>
