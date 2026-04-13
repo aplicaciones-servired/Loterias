@@ -5,13 +5,13 @@ import type { User } from "../types/Interfaces";
 import { LOGIN_URL } from "../utils/contanst";
 import axios from "axios";
 import { toast } from "react-toastify";
-// import { API_URL } from '../utils/constans'
 
 export function useLogin(): {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   password: string;
   errorString: string;
+  loading: boolean;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   handleSubmit: (ev: React.FormEvent) => void;
 } {
@@ -20,13 +20,15 @@ export function useLogin(): {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorString, setErrorString] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
   const handleSubmit = (ev: React.FormEvent): void => {
     ev.preventDefault();
-    //axios.post("http://localhost:9010/api/v2/login", { username, password })
-    axios.post(`${LOGIN_URL}/login`, { username, password }) // Reemplaza 'APP_NAME' con el nombre de tu aplicaciÃ³n
+    setLoading(true);
+    
+    axios.post(`${LOGIN_URL}/login`, { username, password })
       .then((res) => {
         const proceso = res.data.user.process
         if (proceso === "Operaciones" || proceso === "Financiero") {
@@ -46,14 +48,16 @@ export function useLogin(): {
           setErrorString("Datos de usuario inválidos.");
         }
       })
-
       .catch((error) => {
         const errorMessage = (error.response?.data?.message ??
           error.message) as string | undefined;
-        setErrorString(errorMessage ?? "Error al iniciar sesiÃ³n");
+        setErrorString(errorMessage ?? "Error al iniciar sesión");
         setTimeout(() => {
           setErrorString("");
         }, 5000);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -62,6 +66,7 @@ export function useLogin(): {
     setUsername,
     password,
     errorString,
+    loading,
     setPassword,
     handleSubmit,
   };
